@@ -13,6 +13,9 @@ if ($_SESSION['permisos']['id_rol'] == '19') {
   // Detén la ejecución del script actual
 }
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 ?>
 
 <!DOCTYPE html>
