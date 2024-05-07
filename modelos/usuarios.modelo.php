@@ -3,9 +3,6 @@
 require_once "conexion.php";
 
 class ModeloUsuarios{
-	
-
-	
 
 	/*=============================================
 	MOSTRAR USUARIOS
@@ -102,25 +99,16 @@ class ModeloUsuarios{
 
 	}
 
-
-
-
-
-
-
-
-
-
 	/*=============================================
 	REGISTRO DE USUARIO
 	=============================================*/
 
-	static public function mdlIngresarUsuario($tabla, $datos){
+	public static function mdlIngresarUsuario($tabla, $datos){
 
 		
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(usu_documento, usu_nombre, usu_apellido, usu_usuario, usu_password, usu_genero, usu_fch_nac, direccion, ciudades_id, tipos_documentos_id, usu_telefono, usu_email, 
-																	usu_cargo, usu_foto, usu_estado, id_rol, id_Intermediario, numCotizaciones, fechaFin) 
-																	VALUES (:documento, :nombre, :apellido, :usuario, :password, :genero, :fechaNacimiento, :direccion, :ciudad, :tipoDocumento, :telefono, :email, :cargo, :foto, 1, :rol, :intermediario, :maxCot,  :fechaLimite )");
+																	usu_cargo, usu_foto, usu_estado, id_rol, id_Intermediario, numCotizaciones, cotizacionesTotales, fechaFin) 
+																	VALUES (:documento, :nombre, :apellido, :usuario, :password, :genero, :fechaNacimiento, :direccion, :ciudad, :tipoDocumento, :telefono, :email, :cargo, :foto, 1, :rol, :intermediario, :maxCot, :totalCot, :fechaLimite )");
 
 		
 		$valoresPermitidos = array('fechaNacimiento', 'fechaLimite' );
@@ -151,6 +139,7 @@ class ModeloUsuarios{
 		$stmt -> bindParam(":rol", $datos["rol"], PDO::PARAM_INT);
 		$stmt -> bindParam(":intermediario", $datos["intermediario"], PDO::PARAM_INT);
 		$stmt -> bindParam(":maxCot", $datos["maxCotizaciones"], PDO::PARAM_INT);
+		$stmt -> bindParam(":totalCot", $datos["cotizacionesTotales"], PDO::PARAM_INT);
 		$stmt -> bindParam(":fechaLimite", $datos["fechaLimite"], PDO::PARAM_STR);
 
 
